@@ -1,4 +1,4 @@
 run:
-	@/bin/sh $(PWD)/bin/run.sh
+	@/bin/bash bin/run.sh
 setup:
-	@/bin/sh $(PWD)/bin/setup.sh
+	@/bin/bash bin/setup.sh
