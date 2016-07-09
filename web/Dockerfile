@@ -24,16 +24,17 @@ RUN apk --update add \
 RUN apk add nginx
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Install composer global bin
+RUN ln -s /usr/bin/php7 /usr/local/bin/php && curl -sS https://getcomposer.org/installer | php7 \
+    && mv composer.phar /usr/local/bin/composer \
+    && composer global require "fxp/composer-asset-plugin:^1.2.0"
+
+
 COPY /rootfs /
 
 # remove caches
 RUN rm -fr /var/cache/apk/* && \
-    chmod +x /start.sh /install.sh && \
-    ln -s /usr/bin/php7 /usr/local/bin/php
-
-# Install composer global bin
-RUN curl -sS https://getcomposer.org/installer | php7 \
-    && mv composer.phar /usr/local/bin/composer
+    chmod +x /start.sh /install.sh
 
 # ADD SOURCE
 ONBUILD RUN chown -Rf nginx:nginx /var/www/
