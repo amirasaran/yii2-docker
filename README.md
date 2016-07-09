@@ -1,6 +1,6 @@
 # YII2 advanced dockerize
 
-# docker mashins
+# docker machines
   - percona (mysql)
   - nginx whit php-fpm
   - redis (comming soon)
@@ -54,5 +54,5 @@ $ make run
 
 your project now setup and configure . 
 
-# Customize Your mashin 
+# Customize Your machine
   - comming soon ...
