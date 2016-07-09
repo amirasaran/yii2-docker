@@ -9,7 +9,7 @@
 # How to install
 1- git clone from repository
 ```sh
-$ git clone 
+$ git clone git@github.com:amirasaran/yii2-docker.git 
 ```
 2- set your site default config ``config.conf``
 ```sh
