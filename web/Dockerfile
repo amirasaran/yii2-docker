@@ -6,6 +6,7 @@ COPY /rootfs/etc/apk /etc/apk
 # Add PHP 7
 RUN apk --update add \
     bash \
+    curl \
     supervisor \
     php7 \
     php7-xml \
@@ -25,8 +26,6 @@ RUN apk --update add \
     php7-gd \
     nginx
 
-ENV DEBIAN_FRONTEND=noninteractive
-
 # Install composer global bin
 RUN ln -s /usr/bin/php7 /usr/local/bin/php && curl -sS https://getcomposer.org/installer | php7 \
     && mv composer.phar /usr/local/bin/composer \
@@ -37,9 +36,6 @@ COPY /rootfs /
 # remove caches
 RUN rm -fr /var/cache/apk/* && \
     chmod +x /start.sh /install.sh
-
-# ADD SOURCE
-ONBUILD RUN chown -Rf nginx:nginx /var/www/
 
 # expose ports
 EXPOSE 80

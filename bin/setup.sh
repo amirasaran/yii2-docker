@@ -24,6 +24,7 @@ confirm () {
 }
 
 
+
 if [ -z $GITHUB_TOKEN ]
 then
 
@@ -48,6 +49,9 @@ then
       
 
 fi
+USER_ID=${EUID:-1000}
+EGID=$(id -g)
+GROUP_ID=${EGID:-1000}
 
 echo '****************************************'
 echo '* start to creating docker-compose.yml '
@@ -78,6 +82,8 @@ web:
   - $APP_WEB_FOLDER:$SITE_ROOT
   - $SHARING_FOLDER:/share
  environment:
+  - GROUPID=$GROUP_ID
+  - USERID=$USER_ID
   - FRONTEND_SITE_NAME=$FRONTEND_SITE_NAME
   - BACKEND_SITE_NAME=$BACKEND_SITE_NAME
   - GITHUB_TOKEN=$GITHUB_TOKEN
