@@ -23,6 +23,21 @@ confirm () {
     esac
 }
 
+
+if [ -z $GITHUB_TOKEN ]
+then
+
+   echo '***************************************************************************'
+   echo '* your github token is blank                                              *'
+   echo '* open following url in your browser and get new github token             *'
+   echo '* https://github.com/settings/tokens/new?scopes=repo&description=Composer *'
+   echo "* in config.conf file set GITHUB_TOKEN='YOUR-TOKEN-HERE'                  *"
+   echo "* Retry 'make run'                                                        *"
+   echo '***************************************************************************'
+   exit
+fi
+
+
 if [ -f docker-compose.yml ]
 then
     echo "ATTENTION :
@@ -63,8 +78,9 @@ web:
   - $APP_WEB_FOLDER:$SITE_ROOT
   - $SHARING_FOLDER:/share
  environment:
-  - SITE_NAME_FRONTEND=$FRONTEND_SITE_NAME
-  - SITE_NAME_BACKEND=$BACKEND_SITE_NAME
+  - FRONTEND_SITE_NAME=$FRONTEND_SITE_NAME
+  - BACKEND_SITE_NAME=$BACKEND_SITE_NAME
+  - GITHUB_TOKEN=$GITHUB_TOKEN
  links:
   - percona:mysql" > docker-compose.yml
 cat docker-compose.yml
