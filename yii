@@ -14,5 +14,5 @@ while [ "$1" != "" ]; do
   ARGUMENTS=$ARGUMENTS" ${1}" 
 	shift;
 done;
-docker exec -it $WEB_CONTAINER_NAME $SITE_ROOT/yii $ARGUMENTS
+docker exec -it $WEB_CONTAINER_NAME su - app -c "$SITE_ROOT/yii $ARGUMENTS"
 

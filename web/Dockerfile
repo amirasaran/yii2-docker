@@ -27,8 +27,8 @@ RUN apk --update add \
     nginx
 
 # Install composer global bin
-RUN ln -s /usr/bin/php7 /usr/local/bin/php && curl -sS https://getcomposer.org/installer | php7 \
-    && mv composer.phar /usr/local/bin/composer \
+RUN ln -s /usr/bin/php7 /usr/bin/php && curl -sS https://getcomposer.org/installer | php7 \
+    && mv composer.phar /usr/bin/composer \
     && composer global require "fxp/composer-asset-plugin:^1.2.0"
 
 COPY /rootfs /

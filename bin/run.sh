@@ -31,5 +31,3 @@ echo "*********************************************"
 docker exec  $WEB_CONTAINER_NAME chmod +x /install.sh
 docker exec  $WEB_CONTAINER_NAME /bin/sh install.sh
 
-echo "to fix permissions enter your password"
-sudo chown -R $USER. $APP_WEB_FOLDER

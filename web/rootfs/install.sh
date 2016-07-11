@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+getent group app &>/dev/null || addgroup -g ${GROUPID} app
+id -u app &>/dev/null || adduser -D  -G app -s /bin/bash -u ${USERID} app
+
 echo "*********************************************"
 composer config -g github-oauth.github.com $GITHUB_TOKEN
 echo 'set composer github token successfull'
@@ -18,4 +22,4 @@ else
     echo "*********************************************"
 fi
 
-
+chown -R app. /var/www
