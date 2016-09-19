@@ -60,7 +60,7 @@ touch docker-compose.yml
 echo "
 percona:
  image: percona
- restart: alway
+ restart: always
  container_name: $MYSQL_CONTAINER_NAME
  hostname: $MYSQL_CONTAINER_NAME
  volumes:
